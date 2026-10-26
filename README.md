@@ -1,6 +1,6 @@
 # 🏛️ Menú Digital Interactivo - Tío Santorini
 **San Diego, Carabobo, Venezuela**  
-**WhatsApp Oficial para Pedidos:** `+584123714136`  
+**WhatsApp Oficial para Pedidos:** `+584`  
 **Horario:** Lunes a Domingo de 11:00 AM a 3:00 AM  
 **Instagram:** `@Santorini_venezuela`
 
