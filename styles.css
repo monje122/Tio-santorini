@@ -1,0 +1,699 @@
+/* Estilos Personalizados - Tío Santorini */
+/* Optimizado para iOS (iPhone con Notch / Dynamic Island) y Android */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg-main: #040816;
+  --bg-card: #0a1128;
+  --bg-card-hover: #0e183a;
+  --bg-glass: rgba(10, 17, 40, 0.90);
+  --border-color: #1a2754;
+  --border-glow: rgba(37, 99, 235, 0.4);
+  --gold: #f5b800;
+  --gold-hover: #e0a500;
+  --gold-glow: rgba(245, 184, 0, 0.35);
+  --blue-royal: #1d4ed8;
+  --blue-bright: #2563eb;
+  --blue-electric: #38bdf8;
+  --text-primary: #ffffff;
+  --text-muted: #94a3b8;
+  --text-gold: #fcd34d;
+  
+  /* Safe Area Variables para iPhone */
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation; /* Elimina el retraso de 300ms de toque en móviles */
+}
+
+html {
+  scroll-behavior: smooth;
+  height: -webkit-fill-available;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(29, 78, 216, 0.25) 0%, transparent 60%),
+    radial-gradient(circle at 100% 40%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 0% 80%, rgba(245, 184, 0, 0.09) 0%, transparent 40%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-left: var(--sal);
+  padding-right: var(--sar);
+}
+
+/* Evitar scroll de fondo al abrir modal en iOS */
+body.modal-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+h1, h2, h3, .brand-font {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.04em;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #040816;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a2754;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* Efectos de vidrio y bordes */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+}
+
+.glow-card {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+@media (hover: hover) {
+  .glow-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(245, 184, 0, 0.5);
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 184, 0, 0.18);
+  }
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fff3c4 0%, #f5b800 60%, #b48500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blue-gradient-text {
+  background: linear-gradient(135deg, #93c5fd 0%, #3b82f6 60%, #1d4ed8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Botón Dorado Tío Santorini con respuesta táctil */
+.btn-gold {
+  background: linear-gradient(135deg, #fcd34d 0%, #f5b800 60%, #d97706 100%);
+  color: #070d24;
+  font-weight: 700;
+  transition: all 0.18s ease;
+  box-shadow: 0 4px 15px rgba(245, 184, 0, 0.3);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn-gold:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(245, 184, 0, 0.4);
+}
+
+/* Botón WhatsApp Especial con feedback táctil */
+.btn-whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff;
+  font-weight: 700;
+  transition: all 0.18s ease;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn-whatsapp:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 10px rgba(37, 211, 102, 0.45);
+}
+
+/* Contenedor de Categorías con scroll táctil suave (iOS Momentum Scrolling) */
+.categories-wrapper {
+  position: relative;
+}
+
+.categories-bar {
+  display: flex;
+  overflow-x: auto;
+  gap: 0.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding: 0.25rem 0.25rem 0.5rem 0.25rem;
+}
+.categories-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-pill {
+  white-space: nowrap;
+  transition: all 0.18s ease;
+  border: 1px solid var(--border-color);
+  background: rgba(14, 24, 58, 0.7);
+  color: #cbd5e1;
+  user-select: none;
+  -webkit-user-select: none;
+  flex-shrink: 0;
+}
+
+.cat-pill:active {
+  transform: scale(0.96);
+}
+
+.cat-pill.active {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  border-color: var(--gold);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+}
+
+/* Tarjeta de Comida Optimizada para Móviles */
+.food-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.15rem;
+  overflow: hidden;
+  position: relative;
+  background: #09112a;
+  border: 1px solid var(--border-color);
+}
+
+.food-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 60%; /* Ratio 16:9-ish */
+  overflow: hidden;
+  background-color: #070e24;
+}
+
+.food-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@media (hover: hover) {
+  .food-card:hover .food-card-img {
+    transform: scale(1.05);
+  }
+}
+
+.badge-tag {
+  background: rgba(4, 8, 22, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Modales adaptados a iPhone / Android */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 5, 15, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: #091026;
+  border: 1px solid #1e2c5e;
+  border-radius: 1.35rem;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  max-height: 90dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 30px rgba(37, 99, 235, 0.25);
+  transform: scale(0.94);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-backdrop.open .modal-content {
+  transform: scale(1);
+}
+
+/* En teléfonos (< 640px), los modales se abren como Bottom Sheets nativos de iOS/Android */
+@media (max-width: 640px) {
+  .modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-content {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    max-height: 88vh;
+    max-height: 88dvh;
+    transform: translateY(100%);
+    padding-bottom: calc(1.5rem + var(--sab));
+  }
+
+  .modal-backdrop.open .modal-content {
+    transform: translateY(0);
+  }
+
+  .modal-handle-bar {
+    display: block;
+    width: 44px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    margin: 0 auto 0.75rem auto;
+  }
+}
+
+/* Modal Admin más amplio */
+.modal-admin-content {
+  max-width: 900px;
+}
+
+/* Cart Drawer / Bottom Sheet */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  max-width: 450px;
+  height: 100vh;
+  height: 100dvh;
+  background: #080f26;
+  border-left: 1px solid var(--border-color);
+  z-index: 1100;
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-bottom: var(--sab);
+}
+
+.cart-drawer.open {
+  right: 0;
+}
+
+/* En smartphones, el carrito se desliza desde abajo como un Bottom Sheet táctil */
+@media (max-width: 640px) {
+  .cart-drawer {
+    top: auto;
+    bottom: -100%;
+    right: 0;
+    left: 0;
+    max-width: 100%;
+    height: 90vh;
+    height: 90dvh;
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    transition: bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cart-drawer.open {
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 5, 15, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Barra flotante móvil para ver pedido (Safe Area para iPhone) */
+.mobile-cart-bar {
+  position: fixed;
+  bottom: calc(0.85rem + var(--sab));
+  left: 0.85rem;
+  right: 0.85rem;
+  z-index: 35;
+}
+
+/* Toast flotante */
+.toast-container {
+  position: fixed;
+  bottom: calc(5.5rem + var(--sab));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1200;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  width: 90%;
+  max-width: 380px;
+}
+
+.toast {
+  background: rgba(10, 19, 46, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--gold);
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(245, 184, 0, 0.3);
+  font-size: 0.86rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  width: auto;
+  text-align: center;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Símbolo de logo SVG decorativo */
+.logo-glow {
+  filter: drop-shadow(0 0 12px rgba(245, 184, 0, 0.45));
+}
+
+/* Input styles - IMPORTANTE: font-size 16px en móviles para evitar el zoom forzado de iOS Safari */
+.santorini-input {
+  background: #0d1738;
+  border: 1px solid #1e2c5e;
+  color: #ffffff;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.95rem;
+  font-family: inherit;
+  font-size: 16px; /* 16px exacto previene zoom molesto en iPhone */
+  width: 100%;
+  transition: border-color 0.2s, background-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+@media (min-width: 640px) {
+  .santorini-input {
+    font-size: 0.92rem;
+  }
+}
+
+.santorini-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(245, 184, 0, 0.25);
+  background: #111e48;
+}
+
+/* Radio buttons & Checkboxes táctiles */
+.custom-option-label {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0.85rem;
+  border-radius: 0.75rem;
+  background: #0c1638;
+  border: 1px solid #1b2857;
+  cursor: pointer;
+  transition: all 0.18s;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.custom-option-label:active {
+  transform: scale(0.97);
+}
+
+.custom-option-label.selected {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: var(--gold);
+  color: #ffffff;
+}
+
+/* Switch toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1e293b;
+  transition: .25s;
+  border-radius: 26px;
+  border: 1px solid #334155;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .25s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #2563eb;
+  border-color: #3b82f6;
+}
+input:checked + .slider:before {
+  transform: translateX(22px);
+  background-color: var(--gold);
+}
+
+/* Área de cabecera con Safe Area para iPhone */
+.header-safe {
+  padding-top: calc(0.35rem + var(--sat));
+}
+
+/* --- CARRUSEL DE SHOWS EN VIVO (MIÉRCOLES A SÁBADOS) --- */
+.shows-slider-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: #060c22;
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.85), 0 0 25px rgba(29, 78, 216, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.shows-slider-track {
+  position: relative;
+  width: 100%;
+  height: 345px;
+}
+
+@media (min-width: 640px) {
+  .shows-slider-track {
+    height: 380px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .shows-slider-track {
+    height: 420px;
+  }
+}
+
+.shows-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.02);
+  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.65s;
+  pointer-events: none;
+}
+
+.shows-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.shows-slide-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.shows-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(4, 8, 22, 0.25) 0%, rgba(4, 8, 22, 0.6) 45%, rgba(4, 8, 22, 0.96) 100%),
+              radial-gradient(circle at 15% 60%, rgba(29, 78, 216, 0.35) 0%, transparent 65%);
+}
+
+.shows-slide-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem 1rem 1.25rem 1rem;
+  z-index: 10;
+}
+
+@media (min-width: 640px) {
+  .shows-slide-content {
+    max-width: 700px;
+    padding: 2rem 2.5rem;
+  }
+}
+
+/* Cápsula de Navegación Superior Derecha (Despejada del centro de la imagen y texto) */
+.slider-capsule {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(4, 8, 22, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 0.25rem 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.slider-capsule-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.slider-capsule-btn:hover {
+  background: var(--gold);
+  color: #040816;
+  box-shadow: 0 0 10px rgba(245, 184, 0, 0.6);
+}
+
+.slider-capsule-btn:active {
+  transform: scale(0.9);
+}
+
+/* Indicadores de diapositivas */
+.slider-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.slider-dot.active {
+  width: 22px;
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(245, 184, 0, 0.8);
+}
+
+/* Pulsación del botón de EN VIVO */
+@keyframes livePulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.pulse-dot {
+  animation: livePulse 1.8s infinite;
+}
+
